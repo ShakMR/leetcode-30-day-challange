@@ -1,35 +1,20 @@
-class StackItem {
-  value;
-  min;
-
-  constructor(value, min) {
-    this.value = value;
-    this.min = min;
-  }
-
-}
-
 /**
  * initialize your data structure here.
  */
 class MinStack {
   stack = [];
+  min = Number.MAX_SAFE_INTEGER;
 
   /**
    * @param {number} x
    * @return {void}
    */ 
   push(x) {
-    let min = Number.MAX_SAFE_INTEGER;
-    if (this.stack.length !== 0) {
-      min = this.getMin();
+    if (this.min > x) {
+      this.min = x
     }
 
-    if (min > x) {
-      min = x
-    }
-
-    this.stack.push(new StackItem(x, min));
+    this.stack.push([x, this.min]);
   };
 
   /**
@@ -37,21 +22,31 @@ class MinStack {
    */
   pop() {
     this.stack.pop();
+    const length = this.stack.length
+    if (length > 0) {
+      this.min = this.stack[length - 1][1];
+    } else {
+      this.min = Number.MAX_SAFE_INTEGER;
+    }
   };
 
   /**
    * @return {number}
    */
   top() {
-    return this.stack[this.stack.length - 1].value;
+    return this.stack[this.stack.length - 1][0];
   };
 
   /**
    * @return {number}
    */
   getMin() {
-    return this.stack[this.stack.length - 1].min;
+    return this.min;
   };
+
+  toString() {
+    this.stack.reverse().forEach((i) => { console.log(`[${i[0]},${i[1]}]`) });
+  }
 }
 
 /**
