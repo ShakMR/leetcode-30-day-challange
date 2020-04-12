@@ -1,0 +1,23 @@
+{
+  "name": "leetcode-code-challange",
+  "version": "1.0.0",
+  "description": "Leetcode April 30 days code challange solutions",
+  "scripts": {
+    "test": "ava **/*.test.js",
+    "test:watch": "ava debug -s -T 10h **/*.test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ShakMR/leetcode-30-day-challange.git"
+  },
+  "author": "ShakMR",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ShakMR/leetcode-30-day-challange/issues"
+  },
+  "homepage": "https://github.com/ShakMR/leetcode-30-day-challange#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "ava": "^3.6.0"
+  }
+}
