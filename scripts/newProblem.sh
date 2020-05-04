@@ -35,7 +35,7 @@ main () {
   if [ "$createTest" == "" ] || [ "$createTest" == 'Y' ] || [ "$createTest" == 'y' ]; then
     readQ "Give me the input:" input
     readQ "Give me the expected output" output
-    sed 's/::input::/'${input}'/gm' < test_template.templ | sed 's/::output::/'${output}'/gm' | sed 's/::name::/'${problemNameCamelCase}'/gm' > "${testFile}"
+    sed 's/::input::/'${input}'/g' < ./templates/test_template.templ | sed 's/::output::/'${output}'/g' | sed 's/::name::/'${problemNameCamelCase}'/g' > "${testFile}"
   fi
 }
 
