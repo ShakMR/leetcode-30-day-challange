@@ -4,7 +4,7 @@
   "description": "Leetcode April 30 days code challange solutions",
   "scripts": {
     "test": "ava **/*.test.js",
-    "test:watch": "ava debug -s -T 10h **/*.test.js",
+    "test:watch": "ava debug -s -T 10000 **/*.test.js",
     "new:project": "bash ./scripts/newProblem.sh"
   },
   "repository": {
