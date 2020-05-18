@@ -1,44 +1,33 @@
-const buildCharsMap = (string) => {
-  const map = new Map();
-  for (let s of string) {
-    const count = map.get(s) || 0;
-    map.set(s, count + 1);
-  }
-  return map;
-}
 /**
  * @param {string} s
  * @param {string} p
  * @return {number[]}
  */
 const findAnagrams = function(s, p) {
-  const sLength = s.length;
-  const pLength = p.length;
-  const originalMap = buildCharsMap(p);
-  let indeces = [];
-  let i = 0;
-  while (i < sLength) {
-    let abort = false;
-    let pVisited = new Map(originalMap);
-    let nFound = 0;
-    for (let j = 0; j < pLength && !abort; j++) {
-      const c = s[i + j];
-      const charCount = pVisited.get(c);
-      if (charCount) {
-        console.log(c, 'IS');
-        // found
-        pVisited.set(c, charCount - 1);
-        nFound++;
-        if (nFound === pLength) {
-          indeces.push(i);
-          abort = true;
-          i++;
-        }
-      } else {
-        console.log(c, 'IS NOT IS');
-        abort = true;
-        i = i + j + 1;
-      }
+  const sL = s.length;
+  const pL = p.length;
+  if (pL === 0 || sL === 0 ||  pL > sL) {
+    return [];
+  }
+
+  const aCharCode = 'a'.charCodeAt(0);
+
+  let permutationMap = new Array(26).fill(0); //represents all the alphabet
+
+  for (let a of p) {
+    permutationMap[a.charCodeAt(0) - aCharCode]++;
+  }
+
+
+  let indeces = []
+  for (let i = 0; i < (sL - pL + 1); i++) {
+    let sPerMap = new Array(26).fill(0);
+    for (let j = 0; j < pL; j++) {
+      sPerMap[s[i+j].charCodeAt(0) - aCharCode]++;
+    }
+
+    if (permutationMap.every((value, index) => sPerMap[index] === value)) {
+      indeces.push(i);
     }
   }
   return indeces;
